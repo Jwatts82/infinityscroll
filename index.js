@@ -36,13 +36,19 @@ function displayPhotos() {
     })
 }
 
-
 async function getPhotos() {
     const res = await fetch(apiURL)
     photosArray = await res.json()
     // console.log(photosArray)
     displayPhotos()
 }
+
+window.addEventListener('scroll', () => {
+    // console.log('scrolled')
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
+        getPhotos()
+    }
+})
 
 
 getPhotos()
